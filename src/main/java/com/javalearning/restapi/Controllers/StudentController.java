@@ -3,6 +3,7 @@ package com.javalearning.restapi.Controllers;
 
 import com.javalearning.restapi.bean.Student;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -31,4 +32,13 @@ public class StudentController {
         return Students; //parse java bean object list to json array
 
     }
+
+    @GetMapping("/student/{id}")
+    public Student addStudent(@PathVariable int id){
+
+        Student s = new Student(id,"merna","adel");
+
+        return s;
+    }
+
 }
