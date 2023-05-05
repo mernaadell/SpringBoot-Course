@@ -45,4 +45,10 @@ public class StudentController {
 
         return s;
     }
+
+    @PostMapping("/student/create")
+    public Student createStudent(@RequestBody Student student){  //convert json to java bean object both are the same name
+        Student s = new Student(student.getId(),student.getFirstName(),student.getLastName());
+        return s;
+    }
 }
