@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/students")
 public class StudentController {
 
     //use generic class to return http response
@@ -25,7 +26,7 @@ public class StudentController {
                 .body(s);
     }
 
-    @GetMapping("/students")
+    @GetMapping("/")
     public List<Student> getStudents(){
 
         List<Student> Students =new ArrayList<>();
@@ -37,14 +38,14 @@ public class StudentController {
 
     }
 
-    @GetMapping("/student/{id}/{firstName}/{last-Name}")
+    @GetMapping("/{id}/{firstName}/{last-Name}")
     public Student addStudent(@PathVariable int id,@PathVariable String firstName, @PathVariable("last-Name") String lastName){ //bind path variable to request
 
         Student s = new Student(id,firstName,lastName);
 
         return s;
     }
-    @GetMapping("/student/params")
+    @GetMapping("/params")
     public Student addStudentrequestParams(@RequestParam int id){ //extract value id from uri
 
         Student s = new Student(id,"merna","adel");
@@ -52,7 +53,7 @@ public class StudentController {
         return s;
     }
 
-    @PostMapping("/student/create")
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public Student createStudent(@RequestBody Student student){  //convert json to java bean object both are the same name
         Student s = new Student(student.getId(),student.getFirstName(),student.getLastName());
@@ -63,7 +64,7 @@ public class StudentController {
         System.out.println(student.getFirstName());
         return student;
     }
-    @DeleteMapping("/student/{id}/delete")
+    @DeleteMapping("/{id}/delete")
     public String deleteStudent(@PathVariable int id){  //convert json to java bean object both are the same name
         System.out.println(id);
         return "deleted";
