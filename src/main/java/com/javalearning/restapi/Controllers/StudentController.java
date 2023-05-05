@@ -2,9 +2,7 @@ package com.javalearning.restapi.Controllers;
 
 
 import com.javalearning.restapi.bean.Student;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,11 +32,17 @@ public class StudentController {
     }
 
     @GetMapping("/student/{id}/{firstName}/{last-Name}")
-    public Student addStudent(@PathVariable int id,@PathVariable String firstName, @PathVariable("last-Name") String lastName){
+    public Student addStudent(@PathVariable int id,@PathVariable String firstName, @PathVariable("last-Name") String lastName){ //bind path variable to request
 
         Student s = new Student(id,firstName,lastName);
 
         return s;
     }
+    @GetMapping("/student/params")
+    public Student addStudentrequestParams(@RequestParam int id){ //extract value id from uri
 
+        Student s = new Student(id,"merna","adel");
+
+        return s;
+    }
 }
