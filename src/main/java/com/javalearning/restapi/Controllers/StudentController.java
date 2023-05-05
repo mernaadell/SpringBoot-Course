@@ -33,10 +33,10 @@ public class StudentController {
 
     }
 
-    @GetMapping("/student/{id}")
-    public Student addStudent(@PathVariable int id){
+    @GetMapping("/student/{id}/{firstName}/{last-Name}")
+    public Student addStudent(@PathVariable int id,@PathVariable String firstName, @PathVariable("last-Name") String lastName){
 
-        Student s = new Student(id,"merna","adel");
+        Student s = new Student(id,firstName,lastName);
 
         return s;
     }
