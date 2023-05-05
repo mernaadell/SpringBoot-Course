@@ -2,6 +2,7 @@ package com.javalearning.restapi.Controllers;
 
 
 import com.javalearning.restapi.bean.Student;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -47,8 +48,14 @@ public class StudentController {
     }
 
     @PostMapping("/student/create")
+    @ResponseStatus(HttpStatus.CREATED)
     public Student createStudent(@RequestBody Student student){  //convert json to java bean object both are the same name
         Student s = new Student(student.getId(),student.getFirstName(),student.getLastName());
         return s;
+    }
+    @PutMapping("/student/{id}/update")
+    public Student updateStudent(@RequestBody Student student,@PathVariable int id){  //convert json to java bean object both are the same name
+        System.out.println(student.getFirstName());
+        return student;
     }
 }
