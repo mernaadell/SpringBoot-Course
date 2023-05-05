@@ -3,6 +3,7 @@ package com.javalearning.restapi.Controllers;
 
 import com.javalearning.restapi.bean.Student;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,13 +12,17 @@ import java.util.List;
 @RestController
 public class StudentController {
 
+    //use generic class to return http response
     @GetMapping("/student") //map request to this method
 
-    public Student getStudent(){
+    public ResponseEntity<Student> getStudent(){
 
-        Student s = new Student('1',"merna","adel");
-
-        return s; //parse java bean object to json
+        Student s = new Student('8',"merna","adel");
+        System.out.println(s);
+       // return new ResponseEntity<>(s,HttpStatus.OK); //parse java bean object to json
+        return ResponseEntity.ok()
+                .header("auth","merna")
+                .body(s);
     }
 
     @GetMapping("/students")
