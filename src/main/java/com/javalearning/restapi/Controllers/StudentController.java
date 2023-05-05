@@ -58,4 +58,9 @@ public class StudentController {
         System.out.println(student.getFirstName());
         return student;
     }
+    @DeleteMapping("/student/{id}/delete")
+    public String deleteStudent(@PathVariable int id){  //convert json to java bean object both are the same name
+        System.out.println(id);
+        return "deleted";
+    }
 }
